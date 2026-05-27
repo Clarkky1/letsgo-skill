@@ -6,7 +6,7 @@
 
 <br/>
 
-![Version](https://img.shields.io/badge/version-2.2.0-6366f1?style=for-the-badge&labelColor=1e1b4b)
+![Version](https://img.shields.io/badge/version-2.2.1-6366f1?style=for-the-badge&labelColor=1e1b4b)
 ![Skills](https://img.shields.io/badge/skills_invoked-80-ec4899?style=for-the-badge&labelColor=500724)
 ![Steps](https://img.shields.io/badge/steps-15-10b981?style=for-the-badge&labelColor=064e3b)
 ![Platform](https://img.shields.io/badge/Claude_Code-skill-f97316?style=for-the-badge&labelColor=431407)
@@ -352,6 +352,15 @@ Output the three terminal prompts, filled in with the project name, goal, stack,
 - **Terminal 1: Orchestrator**: plans architecture and delegates bite-sized tasks
 - **Terminal 2: Developer**: builds clean, modular components matching design standards
 - **Terminal 3: QA**: validates every component, runs tests, enforces compliance
+
+> [!IMPORTANT]
+> **No permission-asking.** All three terminals — Orchestrator, Developer, and QA — have full authorization for everything inside the approved scope. Do not ask "can I?", "should I?", or "is it okay to?" for anything already in the plan. Execute. Surface blockers only when genuinely stuck on something outside approved scope.
+
+For fully unattended runs, launch each terminal with `claude --dangerously-skip-permissions`, or pre-approve routine tools in `~/.claude/settings.json`:
+
+```json
+{ "allowedTools": ["Bash", "Read", "Write", "Edit", "Glob", "Grep"] }
+```
 
 #### Session Resilience (for unattended runs)
 
