@@ -354,7 +354,7 @@ Output the three terminal prompts, filled in with the project name, goal, stack,
 - **Terminal 3: QA**: validates every component, runs tests, enforces compliance
 
 > [!IMPORTANT]
-> **No permission-asking.** All three terminals — Orchestrator, Developer, and QA — have full authorization for everything inside the approved scope. Do not ask "can I?", "should I?", or "is it okay to?" for anything already in the plan. Execute. Surface blockers only when genuinely stuck on something outside approved scope.
+> **No permission-asking — this applies to the Orchestrator too.** All three terminals have full authorization for everything inside the approved scope. The Orchestrator does not ask "can I delegate this?", "should I approve X?", or "is it okay to proceed?" — it delegates and acts. Workers do not ask mid-loop. Nobody asks for work that is already in the plan. Execute. Surface blockers only when genuinely stuck on something outside the approved scope.
 
 For fully unattended runs, launch each terminal with `claude --dangerously-skip-permissions`, or pre-approve routine tools in `~/.claude/settings.json`:
 
