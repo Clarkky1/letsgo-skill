@@ -6,15 +6,15 @@
 
 <br/>
 
-![Version](https://img.shields.io/badge/version-2.2.1-6366f1?style=for-the-badge&labelColor=1e1b4b)
-![Skills](https://img.shields.io/badge/skills_invoked-80-ec4899?style=for-the-badge&labelColor=500724)
+![Version](https://img.shields.io/badge/version-2.3.0-6366f1?style=for-the-badge&labelColor=1e1b4b)
+![Skills](https://img.shields.io/badge/skills_invoked-95-ec4899?style=for-the-badge&labelColor=500724)
 ![Steps](https://img.shields.io/badge/steps-15-10b981?style=for-the-badge&labelColor=064e3b)
 ![Platform](https://img.shields.io/badge/Claude_Code-skill-f97316?style=for-the-badge&labelColor=431407)
 ![Design First](https://img.shields.io/badge/design--first-always-3b82f6?style=for-the-badge&labelColor=1e3a5f)
 
 <br/>
 
-> **15 steps. 80 skills. Every decision locked before a line of code is written.**
+> **15 steps. 95 skills. Every decision locked before a line of code is written.**
 
 <br/>
 
@@ -52,10 +52,10 @@ flowchart TD
  S3[Step 3\nBrand check + design system\nbrand-guidelines · design-system]
  S3 --> S4
 
- S4[Step 4\nUI Standard + Inspiration Brief\nhallmark · silencio · landonorris-ui\npixel-art · liquid-glass · portfolio-design]
+ S4[Step 4\nUI Standard + Inspiration Brief\nhallmark · silencio · landonorris-ui\npixel-art · liquid-glass · portfolio-design · canvas-design]
  S4 --> S5
 
- S5[Step 5\nPlatform + Animation + Component Library\ngsap · framer-motion · lenis · matter.js\nshadcn · magic-ui · aceternity · skiper-ui]
+ S5[Step 5\nPlatform + Animation + Component Library\ngsap · framer-motion · lenis · matter.js\nshadcn · magic-ui · aceternity · skiper-ui\nhyperframes · docx · pdf · pptx · xlsx\nalgorithmic-art · web-artifacts-builder · slack-gif-creator]
  S5 --> S6
 
  S6[Step 6\n3-Terminal Setup + Session Resilience\nOrchestrator · Developer · QA\nwatchdog · mcp-reconnect]
@@ -64,7 +64,7 @@ flowchart TD
  S7[Step 7\nBackground Component\nspline · vanta · haikei · grainient · mesher]
  S7 --> S75
 
- S75[Step 7.5\nTypography + Color + Icons → Figma\nfontjoy · oklch · radix-colors · lucide]
+ S75[Step 7.5\nTypography + Color + Icons → Figma\nfontjoy · oklch · radix-colors · lucide\ntheme-factory for decks / docs / artifacts]
  S75 --> S8
 
  S8[Step 8\nEngagement Design\nhooked-ux · psychology-principles · ui-ux-pro-max]
@@ -87,7 +87,7 @@ flowchart TD
 
  S13{Step 13\nDesign Quality Gate}
  S13 -->|Passes| S14
- S13 -->|Fails| FIX[refactoring-ui\nux-heuristics · taste\nimpeccable-style]
+ S13 -->|Fails| FIX[refactoring-ui\nux-heuristics · taste\nimpeccable-style · webapp-testing]
  FIX --> S13
 
  S14{Step 14\nMobile target?}
@@ -95,7 +95,7 @@ flowchart TD
  S14 -->|No| S15
  AS --> S15
 
- S15[Step 15\nn8n automation offer\ntest before push\nnext steps]
+ S15[Step 15\nn8n automation offer · test before push\ndoc-coauthoring · internal-comms\nskill-creator · next steps]
  S15 --> DONE([ Ship])
 
  style START fill:#6366f1,color:#fff,stroke:none
@@ -129,6 +129,7 @@ Pick one and commit. The skill recommends the right one based on project context
 | **Liquid Glass** | Glassmorphism, blur layers, Apple-adjacent premium | `liquid-glass-design` |
 | **OFF+BRAND. Method** | Premium, alive, intentional : derive every decision from the subject, replace all browser defaults, finish all 5 layers (structure, visual, motion, interaction, polish) | `landonorris-ui` |
 | **Pixel Art** | Retro games, sprites, 8-bit / 16-bit, limited palettes, dithering | `pixel-art` |
+| **Canvas Design** | Print-quality output, PDF/PNG export, editorial design systems | `canvas-design` |
 
 ### Component Libraries
 
@@ -220,7 +221,9 @@ Before asking anything, scan the current directory for existing files (`package.
 
 If the user is still figuring out the concept, invoke `design-sprint` to run a focused discovery session first.
 
-If Claude needs to connect to an external service during development (database, API, Slack, GitHub, file system), ask about MCP server setup and invoke the `mcp` skill. Once wired, [mcp-reconnect](https://github.com/palios-taey/mcp-reconnect) can auto-drive the `/mcp` → Reconnect menu after any server restart — worth installing for the dev loop.
+If Claude needs to connect to an external service during development (database, API, Slack, GitHub, file system), ask about MCP server setup and invoke the `mcp` skill. Once wired, [mcp-reconnect](https://github.com/palios-taey/mcp-reconnect) can auto-drive the `/mcp` → Reconnect menu after any server restart, worth installing for the dev loop.
+
+If the project requires building a new MCP server (TypeScript or Python), invoke `mcp-builder` to scaffold, implement, and test it end-to-end before wiring it into the session.
 
 ---
 
@@ -258,6 +261,7 @@ Analyze context and explicitly recommend one of seven UI standards. State the re
 | **liquid-glass-design** | Glassmorphism, depth, blur layers, Apple-adjacent premium | `liquid-glass-design` |
 | **landonorris-ui / The OFF+BRAND. Method** | Any project that needs to feel premium, alive, and intentional: derive colors, type, and motion from the subject, replace all browser defaults, finish all 5 layers | `landonorris-ui` |
 | **pixel-art** | Retro games, sprite art, 8-bit/16-bit graphics, limited palettes, dithering | `pixel-art` |
+| **canvas-design** | Print-quality output, PDF/PNG export, editorial design systems | `canvas-design` |
 
 After the standard is chosen:
 - Invoke `design-principles` to reinforce contrast, hierarchy, alignment, proximity, and repetition.
@@ -332,7 +336,23 @@ Standards: `ios-hig`, `apple-design`, `swiftui-patterns`
 Animation: `flutter-animations` (implicit/explicit animations, custom painters, Rive)
 
 #### Video generation
-`remotion`: React-based programmatic video
+`remotion`: React-based programmatic video (JSX/TSX, bundler required)
+`hyperframes`: HTML + GSAP to deterministic MP4, no build step, agent-first, Apache 2.0. Prefer HyperFrames when: no React build step is wanted, the animation runtime is GSAP/Anime.js/Lottie, or the workflow is fully agent-driven. Sub-commands: `/hyperframes`, `/hyperframes-cli`, `/hyperframes-media`, `/gsap`, `/animejs`, `/lottie`, `/three`, `/waapi`, `/website-to-hyperframes`, `/remotion-to-hyperframes`
+
+#### Document output
+`docx`: Word document generation
+`pdf`: PDF creation and manipulation
+`pptx`: PowerPoint / presentation generation
+`xlsx`: Excel spreadsheet generation
+
+#### Generative and creative art
+`algorithmic-art`: p5.js generative art, procedural visuals, creative coding
+
+#### Web artifacts
+`web-artifacts-builder`: React + Tailwind + shadcn bundled into a single self-contained HTML artifact
+
+#### Animated GIFs
+`slack-gif-creator`: PIL + GIFBuilder pipeline for animated GIFs (Slack reactions, social media)
 
 #### AI application
 `context-engineering` + `claude-api` or `azure-ai`
@@ -448,6 +468,8 @@ Lock all three before any UI code is written.
 - **SVG Repo**: brand logos, one-off illustrations, anything outside a standard set
 
 After tokens are locked, invoke `figma-design-system` to create a Figma file (via `figma-developer-mcp`) with color styles, text styles, spacing tokens, border radius scale, and a Brand Foundation page. If the MCP is unavailable, output tokens as a structured list for manual Tokens Studio import instead.
+
+If the project outputs decks, documents, or web artifacts, invoke `theme-factory` to generate a matching visual theme (10 pre-set options: Corporate Clean, Bold Dark, Minimal Light, Vibrant Colorful, Nature Organic, Tech Futuristic, Elegant Luxury, Playful Creative, Academic Professional, Startup Modern). The selected theme carries the same typography and color decisions into any `pptx`, `docx`, or `web-artifacts-builder` output.
 
 ---
 
@@ -595,6 +617,7 @@ Before marking the build complete, run a final pass:
 - `ux-heuristics`: check all 10 heuristics, flag severity 3+ issues
 - `taste`: does it look like only this product, or like every other app?
 - `impeccable-style`: typography tracking, widow fix, spacing scale, hover/focus/active states
+- `webapp-testing`: Playwright end-to-end testing, visual regression, accessibility checks
 
 The build is not done until this gate passes.
 
@@ -626,6 +649,11 @@ If the project targets iOS, Android, or both, run the `appstore-guidelines` chec
 
 **What's next**: Present 4–5 contextual next steps based on what was built.
 
+**Documentation and comms offers** (context-dependent):
+- If the project needs internal or stakeholder documentation, invoke `doc-coauthoring` (3-stage: outline, draft, polish).
+- If shipping a team update, newsletter, or third-party communication, invoke `internal-comms`.
+- If any repeating workflow emerged during the build that would make a reusable skill, invoke `skill-creator` to create, test, and benchmark it.
+
 ---
 
 ## Skills Breakdown
@@ -634,7 +662,7 @@ If the project targets iOS, Android, or both, run the `appstore-guidelines` chec
 
 | Category | Count | Skills |
 |---|:---:|---|
-| UI Standards | 7 | hallmark, portfolio-design, motion-design-school, website-ui-v2, liquid-glass-design, landonorris-ui, pixel-art |
+| UI Standards | 8 | hallmark, portfolio-design, motion-design-school, website-ui-v2, liquid-glass-design, landonorris-ui, pixel-art, canvas-design |
 | Component Libraries | 11 | shadcn-ui, origin-ui, magic-ui, motion-primitives, skiper-ui, aceternity, reactbits, hover.dev, buildui.com, fancy-components, uiverse |
 | Animation | 9 | framer-motion, gsap, motion-dev, css-animations, ui-animation, gstac, lenis, animation-designer, flutter-animations |
 | Backgrounds | 6 | spline, vanta-mobile-fix, haikei, framer-marketplace, endlesstools, css-animations |
@@ -649,10 +677,18 @@ If the project targets iOS, Android, or both, run the `appstore-guidelines` chec
 | Mobile & Native | 5 | apple-animations, ios-hig, apple-design, swiftui-patterns, appstore-guidelines |
 | AI & Agents | 4 | autonomous-engineer, claude-api, azure-ai, context-engineering |
 | Responsive | 3 | mobile-responsiveness, responsive-web-design, mobile-first-design |
-| Quality Gate | 4 | refactoring-ui, ux-heuristics, taste, impeccable-style |
-| Utilities | 5 | mcp, n8n, remotion, graphify, frontend-design |
+| Quality Gate | 5 | refactoring-ui, ux-heuristics, taste, impeccable-style, webapp-testing |
+| Video Generation | 2 | remotion, hyperframes |
+| Document Output | 4 | docx, pdf, pptx, xlsx |
+| Generative Art | 1 | algorithmic-art |
+| Web Artifacts | 1 | web-artifacts-builder |
+| Animated GIFs | 1 | slack-gif-creator |
+| Themes | 1 | theme-factory |
+| MCP Building | 1 | mcp-builder |
+| Documentation & Comms | 3 | doc-coauthoring, internal-comms, skill-creator |
+| Utilities | 5 | mcp, n8n, graphify, frontend-design, design-sprint |
 | Session Resilience | 2 | [claude-code-api-watchdog](https://github.com/palios-taey/claude-code-api-watchdog), [mcp-reconnect](https://github.com/palios-taey/mcp-reconnect) |
-| **Total** | **80** | |
+| **Total** | **95** | |
 
 </div>
 
@@ -663,7 +699,7 @@ If the project targets iOS, Android, or both, run the `appstore-guidelines` chec
 Everything `/letsgo` can ask about or invoke on the design side.
 
 ### UI Standards (Step 4)
-`hallmark` · `portfolio-design` · `motion-design-school` · `website-ui-v2` (Silencio) · `liquid-glass-design` · `landonorris-ui` · `pixel-art`
+`hallmark` · `portfolio-design` · `motion-design-school` · `website-ui-v2` (Silencio) · `liquid-glass-design` · `landonorris-ui` · `pixel-art` · `canvas-design`
 
 ### Component Libraries (Step 5)
 `shadcn-ui` · `origin-ui` · `magic-ui` · `motion-primitives` · `skiper-ui` · `21st-dev` · `aceternity` · `reactbits` · `hover.dev` · `buildui.com` · `fancy-components` · `uiverse` · `getdesign` · `framer-marketplace`
@@ -686,8 +722,35 @@ Lucide · Phosphor · Tabler · Iconoir · SVG Repo
 ### Design Inspiration Sources (Step 4)
 Mobbin · Godly · Awwwards · Lapa Ninja · Dark Mode Design · Pageflows · Screenlane · Land-book · VibeUI · Aceternity · Origin UI · Magic UI · Motion Primitives · 21st.dev · Fancy Components · hover.dev · buildui.com · UIverse · Emil Kowalski · Grainient · Mesher · CSS Pattern · SVG Backgrounds · Lummi · Fontjoy · Typewolf · Fonts in Use · Variable Fonts · Realtime Colors · oklch.com · Radix Colors · Happy Hues · Lucide · Phosphor · Tabler · Iconoir · SVG Repo · 60fps.design · Codrops · transition.style · cubic-bezier.com · Impeccable · Taste · oh-my-claude-sisyphus · CodePen
 
-### Design System and Quality (Steps 3, 8, 13)
-`brand-guidelines` · `design-system` · `figma-design-system` · `design-principles` · `design-inspiration` · `free-design-resources` · `hooked-ux` · `psychology-principles` · `ui-ux-pro-max` · `refactoring-ui` · `ux-heuristics` · `taste` · `impeccable-style`
+### Themes (Step 7.5)
+`theme-factory` (10 pre-set themes for decks, docs, and web artifacts)
+
+### Video Generation (Step 5)
+`remotion` · `hyperframes`
+
+### Document Output (Step 5)
+`docx` · `pdf` · `pptx` · `xlsx`
+
+### Generative Art (Step 5)
+`algorithmic-art`
+
+### Web Artifacts (Step 5)
+`web-artifacts-builder`
+
+### Animated GIFs (Step 5)
+`slack-gif-creator`
+
+### MCP Building (Step 2)
+`mcp-builder`
+
+### Documentation and Comms (Step 15)
+`doc-coauthoring` · `internal-comms` · `skill-creator`
+
+### Quality Gate (Step 13)
+`refactoring-ui` · `ux-heuristics` · `taste` · `impeccable-style` · `webapp-testing`
+
+### Design System and Quality (Steps 3, 8)
+`brand-guidelines` · `design-system` · `figma-design-system` · `design-principles` · `design-inspiration` · `free-design-resources` · `hooked-ux` · `psychology-principles` · `ui-ux-pro-max`
 
 ---
 
