@@ -1,7 +1,7 @@
 ---
 name: letsgo
-description: This skill should be used when the user types "/letsgo", says "letsgo", "let's go build", "start a new project", or "kick off a new build". It runs the full 15-step project kickoff flow: personal vs client check (with client meeting prep if client), gather context + MCP setup, brand check + design system, UI standard (Hallmark/portfolio-design/motion-design-school/website-ui-v2/liquid-glass-design/landonorris-ui/pixel-art) + design-inspiration brief (Mobbin/Godly/Awwwards/Lapa/VibeUI/Aceternity/Origin UI/Magic UI/Motion Primitives/21st.dev/Fancy Components/hover.dev/buildui.com/UIverse/Emil Kowalski/Grainient/Mesher/CSS Pattern/SVG Backgrounds/Lummi/Fontjoy/Typewolf/Realtime Colors/oklch/Radix Colors/Lucide/Phosphor/Tabler/60fps.design/Codrops/transition.style), platform detection + animation stack + lenis + matter.js, 3-terminal setup, background component (spline/haikei/vanta/grainient/mesher/css-pattern/svgbackgrounds/framer/endlesstools), typography + color + icon lock, engagement design, tech stack + database (supabase/prisma/drizzle) + auth (clerk/nextauth) + zod validation, folder structure, security standards, hand off to autonomous-engineer, design quality gate, app store prep (if mobile), n8n automation offer + next steps.
-version: 2.2.1
+description: This skill should be used when the user types "/letsgo", says "letsgo", "let's go build", "start a new project", or "kick off a new build". It runs the full 15-step project kickoff flow: personal vs client check (with client meeting prep if client), gather context + MCP setup, brand check + design system, UI standard (Hallmark/portfolio-design/motion-design-school/website-ui-v2/liquid-glass-design/landonorris-ui/pixel-art) + design-inspiration brief (Mobbin/Godly/Awwwards/Lapa/VibeUI/Aceternity/Origin UI/Magic UI/Motion Primitives/21st.dev/Fancy Components/hover.dev/buildui.com/UIverse/Emil Kowalski/Grainient/Mesher/CSS Pattern/SVG Backgrounds/Lummi/Fontjoy/Typewolf/Realtime Colors/oklch/Radix Colors/Lucide/Phosphor/Tabler/60fps.design/Codrops/transition.style), platform detection + animation stack + lenis + matter.js, 3-terminal setup, background component (spline/haikei/vanta/grainient/mesher/css-pattern/svgbackgrounds/framer/endlesstools), typography + color + icon lock, engagement design, tech stack + database (supabase/prisma/drizzle) + auth (clerk/nextauth) + zod validation, folder structure, security standards, hand off to autonomous-engineer, design quality gate, app store prep (if mobile), n8n automation offer + next steps. Video generation: remotion (React) or hyperframes (HTML+GSAP, agent-first, Apache 2.0, no build step) — invoke hyperframes skill when building HTML-to-video pipelines.
+version: 2.3.0
 ---
 
 # /letsgo — Project Kickoff Flow
@@ -82,6 +82,8 @@ If the project goal is unclear or the user is still figuring out the concept, in
 
 If the project needs Claude to connect to an external service (database, API, Slack, GitHub, file system) during development, ask if they want to set up an MCP server. If yes, invoke `mcp` skill. Also note: once the MCP server is wired, `mcp-reconnect` (`github.com/palios-taey/mcp-reconnect`) can auto-drive the `/mcp` → Reconnect menu after any server restart — worth installing for the dev loop.
 
+If the project **requires building a new MCP server** (exposing an internal API, custom tool, or third-party integration to Claude), invoke `mcp-builder` — it covers TypeScript and Python server patterns, tool naming, output schemas, and eval creation.
+
 ## Step 2.5 — Playback, Flow, and Summary Confirmation
 
 Once the user provides their answers or project brief:
@@ -111,6 +113,7 @@ Analyze the project files and context, and suggest the most appropriate UI stand
 - **liquid-glass-design** — glassmorphism, depth, blur layers, Apple-adjacent premium feel. Invoke `liquid-glass-design`.
 - **landonorris-ui / The OFF+BRAND. Method** — not a fixed aesthetic. A process for hitting $20k-quality on any project: derive colors/type/motion from the subject, replace every browser default, finish all 5 layers (structure, visual, motion, interaction, polish). The landonorris.com dark + lime design is the reference example, not the output. Use when the project needs to feel premium, alive, and intentional. Source effects from: [Codrops](https://tympanus.net/codrops), [GSAP demos](https://gsap.com/demos), [Flowbase](https://www.flowbase.co). Invoke `landonorris-ui`.
 - **pixel-art** — retro games, sprite art, 8-bit/16-bit retro graphics, limited palettes, dithering, subpixel animations, tilesets. Invoke `pixel-art`.
+- **canvas-design** — posters, print art, static visual design, PDF/PNG deliverables. Design philosophy → museum-quality canvas output. Invoke `canvas-design`.
 
 After the standard is chosen, invoke `design-principles` to reinforce the foundational rules (contrast, hierarchy, alignment, proximity, repetition) that apply regardless of style. Then invoke `getdesign` as a component and pattern reference alongside `21st-dev`.
 
@@ -140,7 +143,11 @@ Full plugin import reference is in project memory `reference_gsap.md`. Always us
 | Responsive / Multi-screen | `mobile-responsiveness` + `responsive-web-design` + `mobile-first-design` + `frontend-design` | apply alongside web stack |
 | iOS / macOS / SwiftUI | `apple-animations` + `ios-hig` + `apple-design` + `swiftui-patterns` | SF Symbols, SwiftUI native |
 | Flutter | `flutter-animations` | Flutter Material / custom |
-| Video generation | `remotion` | React components |
+| Video generation | `remotion` + `hyperframes` (HTML-native, agent-first, Apache 2.0) | React components (Remotion) / HTML + GSAP (HyperFrames) |
+| Document output | `docx`, `pdf`, `pptx`, `xlsx` (Anthropic document skills) | Word, PDF, PowerPoint, Excel files |
+| Generative art | `algorithmic-art` (p5.js + seeded randomness) | Interactive p5.js HTML artifacts |
+| Web artifacts | `web-artifacts-builder` (React + Tailwind + shadcn bundled to HTML) | Complex claude.ai artifacts |
+| Animated GIFs | `slack-gif-creator` (PIL + GIFBuilder, Slack-optimized) | Slack emoji GIFs, message GIFs |
 | AI application | `context-engineering` + (`claude-api` or `azure-ai`) | — |
 
 For any web project targeting more than one screen size, invoke `mobile-responsiveness`, `responsive-web-design`, `mobile-first-design`, and `frontend-design` to lock breakpoints, fluid grids, and tablet/mobile layout rules before building.
@@ -270,6 +277,9 @@ Choose one icon set and commit. Do not mix sets:
 - **SVG Repo** (`svgrepo.com`) — for brand logos, one-off illustrations, anything outside a standard set
 
 State the locked typography pair, color palette, and icon set explicitly before moving on.
+
+### Quick Theme Option
+If the project output is a **slide deck, document, or HTML artifact** (not a full web app), offer `theme-factory` as a shortcut: 10 pre-set color/font themes the user can browse and apply in one step instead of building tokens from scratch. Show the theme showcase, let the user pick, then apply. Can also generate a custom theme from a mood or brief.
 
 ### Push to Figma
 After tokens are locked, invoke `figma-design-system` to automatically create a new Figma file for the project. The skill will:
@@ -446,6 +456,7 @@ Before marking the build complete, run a final pass using:
 - `ux-heuristics`: check all 10 heuristics, flag severity 3+ issues
 - `taste`: does it look like only this product, or like every other app?
 - `impeccable-style`: typography tracking, widow fix, spacing scale, hover/focus/active states
+- `webapp-testing`: Playwright-based functional testing of the live app — invoke when the project has interactive UI flows that need verification beyond visual QA
 
 Do not call the build done until this gate passes.
 
@@ -469,7 +480,10 @@ Two things always happen at the end:
 
 **Test before push**: Open all changed/new files in the browser using `open` and tell the user: "Test it locally — let me know when everything looks good and I'll push." Do NOT run `git commit` or `git push` until the user explicitly confirms (e.g. "good", "looks good", "push it").
 
-**What's next**: Present a list of 4-5 contextual next steps based on what was just built.
+**What's next**: Present a list of 4-5 contextual next steps based on what was just built. Include relevant offers from:
+- `doc-coauthoring` — if the project needs a PRD, spec, proposal, or decision doc written with the 3-stage (context → refinement → reader testing) workflow
+- `internal-comms` — if the project involved a team workflow and needs 3P updates, a launch newsletter, FAQ, or incident write-up
+- `skill-creator` — if what was just built follows a repeatable pattern the user will want to invoke again, offer to turn it into a reusable skill with evals
 
 ---
 
