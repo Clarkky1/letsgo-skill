@@ -32,6 +32,8 @@ npx skills add Clarkky1/letsgo-skill@letsgo -g -y
 
 Invoke it with `/letsgo` in Claude Code, or say "letsgo build a…" in natural language.
 
+Using /letsgo? [Open an issue](https://github.com/Clarkky1/letsgo-skill/issues) or [reply on X](https://x.com/kinnnparksung). Would love to hear what you're building.
+
 ---
 
 ## How the Flow Works
