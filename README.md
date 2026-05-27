@@ -7,14 +7,14 @@
 <br/>
 
 ![Version](https://img.shields.io/badge/version-2.1.0-6366f1?style=for-the-badge&labelColor=1e1b4b)
-![Skills](https://img.shields.io/badge/skills_invoked-78-ec4899?style=for-the-badge&labelColor=500724)
+![Skills](https://img.shields.io/badge/skills_invoked-80-ec4899?style=for-the-badge&labelColor=500724)
 ![Steps](https://img.shields.io/badge/steps-15-10b981?style=for-the-badge&labelColor=064e3b)
 ![Platform](https://img.shields.io/badge/Claude_Code-skill-f97316?style=for-the-badge&labelColor=431407)
 ![Design First](https://img.shields.io/badge/design--first-always-3b82f6?style=for-the-badge&labelColor=1e3a5f)
 
 <br/>
 
-> **15 steps. 78 skills. Every decision locked before a line of code is written.**
+> **15 steps. 80 skills. Every decision locked before a line of code is written.**
 
 <br/>
 
@@ -58,7 +58,7 @@ flowchart TD
  S5[Step 5\nPlatform + Animation + Component Library\ngsap · framer-motion · lenis · matter.js\nshadcn · magic-ui · aceternity · skiper-ui]
  S5 --> S6
 
- S6[Step 6\n3-Terminal Setup\nOrchestrator · Developer · QA]
+ S6[Step 6\n3-Terminal Setup + Session Resilience\nOrchestrator · Developer · QA\nwatchdog · mcp-reconnect]
  S6 --> S7
 
  S7[Step 7\nBackground Component\nspline · vanta · haikei · grainient · mesher]
@@ -220,7 +220,7 @@ Before asking anything, scan the current directory for existing files (`package.
 
 If the user is still figuring out the concept, invoke `design-sprint` to run a focused discovery session first.
 
-If Claude needs to connect to an external service during development (database, API, Slack, GitHub, file system), ask about MCP server setup and invoke the `mcp` skill.
+If Claude needs to connect to an external service during development (database, API, Slack, GitHub, file system), ask about MCP server setup and invoke the `mcp` skill. Once wired, [mcp-reconnect](https://github.com/palios-taey/mcp-reconnect) can auto-drive the `/mcp` → Reconnect menu after any server restart — worth installing for the dev loop.
 
 ---
 
@@ -352,6 +352,42 @@ Output the three terminal prompts, filled in with the project name, goal, stack,
 - **Terminal 1: Orchestrator**: plans architecture and delegates bite-sized tasks
 - **Terminal 2: Developer**: builds clean, modular components matching design standards
 - **Terminal 3: QA**: validates every component, runs tests, enforces compliance
+
+#### Session Resilience (for unattended runs)
+
+When workers run overnight, in loops, or across long autonomous tasks, two companion tools keep sessions alive:
+
+**[claude-code-api-watchdog](https://github.com/palios-taey/claude-code-api-watchdog)** — detects when a transient API error (529, 429, 500, ECONNRESET) stalls a session at the prompt and auto-injects `Continue` with exponential backoff. Distinguishes transient errors from real usage limits (leaves those alone). Single file, no dependencies.
+
+```bash
+# Install
+curl -O https://raw.githubusercontent.com/palios-taey/claude-code-api-watchdog/main/watchdog.py
+
+# Dry-run first — logs every keystroke it WOULD send without sending any
+python3 watchdog.py --sessions orchestrator,developer,qa --dry-run
+
+# Live
+python3 watchdog.py --sessions orchestrator,developer,qa
+```
+
+**[mcp-reconnect](https://github.com/palios-taey/mcp-reconnect)** — drives the `/mcp` → Reconnect menu sequence automatically after an MCP server restarts or drops. Eliminates the manual context-switch during the edit-restart-reconnect loop.
+
+```bash
+# Install
+git clone https://github.com/palios-taey/mcp-reconnect && cd mcp-reconnect && sudo make install
+
+# Reconnect all Claude Code sessions
+mcp-reconnect
+
+# Target the project sessions by name
+mcp-reconnect orchestrator developer qa
+
+# When calling FROM WITHIN a Claude Code session (e.g. a deploy script), always detach with delay
+nohup mcp-reconnect --delay 10 &>/dev/null & disown
+```
+
+> [!TIP]
+> Point `--sessions` at the exact tmux session names used in the 3-terminal setup above. Run watchdog with `--dry-run` first for at least one session before going live.
 
 ---
 
@@ -606,7 +642,8 @@ If the project targets iOS, Android, or both, run the `appstore-guidelines` chec
 | Responsive | 3 | mobile-responsiveness, responsive-web-design, mobile-first-design |
 | Quality Gate | 4 | refactoring-ui, ux-heuristics, taste, impeccable-style |
 | Utilities | 5 | mcp, n8n, remotion, graphify, frontend-design |
-| **Total** | **78** | |
+| Session Resilience | 2 | [claude-code-api-watchdog](https://github.com/palios-taey/claude-code-api-watchdog), [mcp-reconnect](https://github.com/palios-taey/mcp-reconnect) |
+| **Total** | **80** | |
 
 </div>
 
