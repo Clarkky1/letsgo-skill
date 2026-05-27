@@ -6,7 +6,7 @@
 
 <br/>
 
-![Version](https://img.shields.io/badge/version-2.1.0-6366f1?style=for-the-badge&labelColor=1e1b4b)
+![Version](https://img.shields.io/badge/version-2.2.0-6366f1?style=for-the-badge&labelColor=1e1b4b)
 ![Skills](https://img.shields.io/badge/skills_invoked-80-ec4899?style=for-the-badge&labelColor=500724)
 ![Steps](https://img.shields.io/badge/steps-15-10b981?style=for-the-badge&labelColor=064e3b)
 ![Platform](https://img.shields.io/badge/Claude_Code-skill-f97316?style=for-the-badge&labelColor=431407)

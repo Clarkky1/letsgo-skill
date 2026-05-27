@@ -1,7 +1,7 @@
 ---
 name: letsgo
 description: This skill should be used when the user types "/letsgo", says "letsgo", "let's go build", "start a new project", or "kick off a new build". It runs the full 15-step project kickoff flow: personal vs client check (with client meeting prep if client), gather context + MCP setup, brand check + design system, UI standard (Hallmark/portfolio-design/motion-design-school/website-ui-v2/liquid-glass-design/landonorris-ui/pixel-art) + design-inspiration brief (Mobbin/Godly/Awwwards/Lapa/VibeUI/Aceternity/Origin UI/Magic UI/Motion Primitives/21st.dev/Fancy Components/hover.dev/buildui.com/UIverse/Emil Kowalski/Grainient/Mesher/CSS Pattern/SVG Backgrounds/Lummi/Fontjoy/Typewolf/Realtime Colors/oklch/Radix Colors/Lucide/Phosphor/Tabler/60fps.design/Codrops/transition.style), platform detection + animation stack + lenis + matter.js, 3-terminal setup, background component (spline/haikei/vanta/grainient/mesher/css-pattern/svgbackgrounds/framer/endlesstools), typography + color + icon lock, engagement design, tech stack + database (supabase/prisma/drizzle) + auth (clerk/nextauth) + zod validation, folder structure, security standards, hand off to autonomous-engineer, design quality gate, app store prep (if mobile), n8n automation offer + next steps.
-version: 2.1.0
+version: 2.2.0
 ---
 
 # /letsgo — Project Kickoff Flow
