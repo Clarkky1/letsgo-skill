@@ -200,6 +200,8 @@ Use the right model tier for the right work. Default to mid-tier (Sonnet) and es
 
 The Orchestrator uses Sonnet for routing and delegation. Workers use Sonnet by default. Either escalates to Opus when they hit a judgment call, an ambiguous spec, or a second failed attempt. This keeps cost predictable without sacrificing quality on the decisions that matter.
 
+Invoke `model-route` to apply this tiering automatically across the agent pipeline.
+
 For fully unattended runs, launch each terminal with:
 
 ```bash

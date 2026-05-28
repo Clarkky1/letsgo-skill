@@ -7,14 +7,14 @@
 <br/>
 
 ![Version](https://img.shields.io/badge/version-2.4.0-6366f1?style=for-the-badge&labelColor=1e1b4b)
-![Skills](https://img.shields.io/badge/skills_invoked-95-ec4899?style=for-the-badge&labelColor=500724)
+![Skills](https://img.shields.io/badge/skills_invoked-96-ec4899?style=for-the-badge&labelColor=500724)
 ![Steps](https://img.shields.io/badge/steps-15-10b981?style=for-the-badge&labelColor=064e3b)
 ![Platform](https://img.shields.io/badge/Claude_Code-skill-f97316?style=for-the-badge&labelColor=431407)
 ![Design First](https://img.shields.io/badge/design--first-always-3b82f6?style=for-the-badge&labelColor=1e3a5f)
 
 <br/>
 
-> **15 steps. 95 skills. Every decision locked before a line of code is written.**
+> **15 steps. 96 skills. Every decision locked before a line of code is written.**
 
 <br/>
 
@@ -691,7 +691,7 @@ If the project targets iOS, Android, or both, run the `appstore-guidelines` chec
 | Security & Validation | 3 | security-scan, zod, api-rate-limiting |
 | API Design | 2 | api-design, rest-api-design |
 | Mobile & Native | 5 | apple-animations, ios-hig, apple-design, swiftui-patterns, appstore-guidelines |
-| AI & Agents | 4 | autonomous-engineer, claude-api, azure-ai, context-engineering |
+| AI & Agents | 5 | autonomous-engineer, claude-api, azure-ai, context-engineering, model-route |
 | Responsive | 3 | mobile-responsiveness, responsive-web-design, mobile-first-design |
 | Quality Gate | 5 | refactoring-ui, ux-heuristics, taste, impeccable-style, webapp-testing |
 | Video Generation | 2 | remotion, hyperframes |
@@ -704,7 +704,7 @@ If the project targets iOS, Android, or both, run the `appstore-guidelines` chec
 | Documentation & Comms | 3 | doc-coauthoring, internal-comms, skill-creator |
 | Utilities | 5 | mcp, n8n, graphify, frontend-design, design-sprint |
 | Session Resilience | 2 | [claude-code-api-watchdog](https://github.com/palios-taey/claude-code-api-watchdog), [mcp-reconnect](https://github.com/palios-taey/mcp-reconnect) |
-| **Total** | **95** | |
+| **Total** | **96** | |
 
 </div>
 
