@@ -1,7 +1,7 @@
 ---
 name: letsgo
 description: This skill should be used when the user types "/letsgo", says "letsgo", "let's go build", "start a new project", or "kick off a new build". It runs the full 15-step project kickoff flow: personal vs client check (with client meeting prep if client), gather context + MCP setup, brand check + design system, UI standard (Hallmark/portfolio-design/motion-design-school/website-ui-v2/liquid-glass-design/landonorris-ui/pixel-art) + design-inspiration brief (Mobbin/Godly/Awwwards/Lapa/VibeUI/Aceternity/Origin UI/Magic UI/Motion Primitives/21st.dev/Fancy Components/hover.dev/buildui.com/UIverse/Emil Kowalski/Grainient/Mesher/CSS Pattern/SVG Backgrounds/Lummi/Fontjoy/Typewolf/Realtime Colors/oklch/Radix Colors/Lucide/Phosphor/Tabler/60fps.design/Codrops/transition.style), platform detection + animation stack + lenis + matter.js, 3-terminal setup, background component (spline/haikei/vanta/grainient/mesher/css-pattern/svgbackgrounds/framer/endlesstools), typography + color + icon lock, engagement design, tech stack + database (supabase/prisma/drizzle) + auth (clerk/nextauth) + zod validation, folder structure, security standards, hand off to autonomous-engineer, design quality gate, app store prep (if mobile), n8n automation offer + next steps. Video generation: remotion (React) or hyperframes (HTML+GSAP, agent-first, Apache 2.0, no build step) — invoke hyperframes skill when building HTML-to-video pipelines.
-version: 2.3.0
+version: 2.4.0
 ---
 
 # /letsgo — Project Kickoff Flow
@@ -180,6 +180,25 @@ Workers do not interrupt mid-loop. When a worker finishes its local loop, it del
 ```
 
 The Orchestrator reads structured outcomes and decides what to delegate next. No pane-checking. No mid-loop status pings.
+
+**Iteration cap.** Each worker gets a maximum of 4 attempts on the same task. If a worker reaches 4 attempts without resolving the blocker, it stops, sets `"status": "blocked"` in its outcome, describes what was tried and why it failed, and surfaces to the Orchestrator. The Orchestrator re-scopes, reassigns, or escalates — it does not send the same worker back into a fifth loop. Infinite retry loops are a bug, not persistence.
+
+### Model Tiering
+
+Use the right model tier for the right work. Default to mid-tier (Sonnet) and escalate to the big model (Opus) only when the task genuinely requires it.
+
+| Task type | Model |
+|---|---|
+| Orchestration, delegation, task routing | Sonnet |
+| Boilerplate generation, known patterns, file edits | Sonnet |
+| Running established skills against clear inputs | Sonnet |
+| Judgment calls with ambiguous or conflicting requirements | Opus |
+| Architectural decisions with real trade-offs | Opus |
+| Security review on sensitive or novel code | Opus |
+| Debugging where the root cause is genuinely unclear | Opus |
+| Any task where Sonnet has already failed twice | Opus |
+
+The Orchestrator uses Sonnet for routing and delegation. Workers use Sonnet by default. Either escalates to Opus when they hit a judgment call, an ambiguous spec, or a second failed attempt. This keeps cost predictable without sacrificing quality on the decisions that matter.
 
 For fully unattended runs, launch each terminal with:
 

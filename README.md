@@ -6,7 +6,7 @@
 
 <br/>
 
-![Version](https://img.shields.io/badge/version-2.3.0-6366f1?style=for-the-badge&labelColor=1e1b4b)
+![Version](https://img.shields.io/badge/version-2.4.0-6366f1?style=for-the-badge&labelColor=1e1b4b)
 ![Skills](https://img.shields.io/badge/skills_invoked-95-ec4899?style=for-the-badge&labelColor=500724)
 ![Steps](https://img.shields.io/badge/steps-15-10b981?style=for-the-badge&labelColor=064e3b)
 ![Platform](https://img.shields.io/badge/Claude_Code-skill-f97316?style=for-the-badge&labelColor=431407)
@@ -33,6 +33,20 @@ npx skills add Clarkky1/letsgo-skill@letsgo -g -y
 Invoke it with `/letsgo` in Claude Code, or say "letsgo build a…" in natural language.
 
 Using /letsgo? [Open an issue](https://github.com/Clarkky1/letsgo-skill/issues) or [reply on X](https://x.com/kinnnparksung). Would love to hear what you're building.
+
+---
+
+## What's New
+
+### v2.4.0
+
+**Iteration cap for sub-agents** (Step 6 — Supervisor-Worker Protocol)
+
+Workers now have a hard stop at 4 attempts on any single task. On the fourth failed attempt, the worker sets `status: blocked`, describes what was tried and why it failed, and surfaces to the Orchestrator. The Orchestrator re-scopes, reassigns, or escalates from there. No more infinite retry loops masquerading as persistence.
+
+**Model tiering rule** (Step 6 — Model Tiering)
+
+Added a clear routing table for when to use Sonnet vs Opus. Orchestration, delegation, boilerplate, and known-pattern tasks default to Sonnet. Judgment calls with ambiguous requirements, architectural trade-offs, security review on novel code, and any task where Sonnet has already failed twice escalate to Opus. Cost stays predictable; quality is protected on the decisions that matter.
 
 ---
 
