@@ -74,7 +74,7 @@ flowchart TD
  S5[Step 5\nPlatform + Animation + Component Library\ngsap · framer-motion · lenis · matter.js\nshadcn · magic-ui · aceternity · skiper-ui\nhyperframes · docx · pdf · pptx · xlsx\nalgorithmic-art · web-artifacts-builder · slack-gif-creator]
  S5 --> S6
 
- S6[Step 6\n3-Terminal Setup + Session Resilience\nOrchestrator · Developer · QA\nwatchdog · mcp-reconnect]
+ S6[Step 6\n3-Terminal Setup + Session Resilience\nOrchestrator · Developer · QA\niteration cap · model tiering\nwatchdog · mcp-reconnect]
  S6 --> S7
 
  S7[Step 7\nBackground Component\nspline · vanta · haikei · grainient · mesher]
