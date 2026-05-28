@@ -104,7 +104,7 @@ export const STATUS = {
 | Routes, labels, UI copy | `frontend/constants/` |
 | DB keys, service config, defaults | `backend/constants/` |
 | App name, shared enums, API paths | `shared/constants/` |
-| Env var access | `config/env.ts` only — never access `process.env` directly in components |
+| Env var access | `config/env.ts` only: never access `process.env` directly in components |
 
 ## Clean Architecture Rules
 

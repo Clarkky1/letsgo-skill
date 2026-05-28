@@ -5,14 +5,14 @@ Every project scaffolded via /letsgo must follow these security rules from day o
 ## Environment Variables
 
 - Never hardcode secrets, API keys, tokens, or credentials anywhere in code
-- All secrets go in `.env` — never committed to git
+- All secrets go in `.env`: never committed to git
 - `.env.example` is always committed with placeholder values
-- `.env` is always in `.gitignore` — add it before the first commit
+- `.env` is always in `.gitignore`: add it before the first commit
 - All env vars are validated and typed through `config/env.ts` using `zod` or `t3-env`
 - Never access `process.env.X` directly in components, services, or routes
 
 ```ts
-// config/env.ts — always use this pattern
+// config/env.ts: always use this pattern
 import { z } from "zod"
 
 const envSchema = z.object({
@@ -28,16 +28,16 @@ export const env = envSchema.parse(process.env)
 
 - Never roll custom auth. Use proven libraries: NextAuth.js, Clerk, Auth.js, Supabase Auth
 - Always protect routes at the middleware level, not just in the UI
-- Never trust client-side role checks alone — always verify on the server
+- Never trust client-side role checks alone: always verify on the server
 - Session tokens must be httpOnly cookies, never localStorage
 - Implement CSRF protection on all state-mutating endpoints
 
 ## Input Validation
 
 - Validate all user input at the API boundary using Zod
-- Never trust data coming from the client — validate on the server regardless of client-side validation
+- Never trust data coming from the client: validate on the server regardless of client-side validation
 - Sanitize all inputs before passing to a database query
-- Use parameterized queries or an ORM (Prisma, Drizzle) — never raw string SQL concatenation
+- Use parameterized queries or an ORM (Prisma, Drizzle): never raw string SQL concatenation
 
 ```ts
 // api/validators/user.ts
@@ -60,15 +60,15 @@ export const createUserSchema = z.object({
 
 ## Database
 
-- Use an ORM (Prisma, Drizzle) — never raw SQL string concatenation
+- Use an ORM (Prisma, Drizzle): never raw SQL string concatenation
 - Principle of least privilege: DB user has only the permissions it needs
-- Never store plain-text passwords — use bcrypt or argon2
+- Never store plain-text passwords: use bcrypt or argon2
 - Sensitive fields (passwords, tokens) are never returned in API responses
 
 ## Dependencies
 
 - Audit dependencies at scaffold time: `npm audit`
-- Pin dependency versions in `package.json` — avoid `*` or `latest`
+- Pin dependency versions in `package.json`: avoid `*` or `latest`
 - Never install packages with known critical vulnerabilities
 - Keep `package-lock.json` or `yarn.lock` committed
 

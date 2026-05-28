@@ -19,14 +19,14 @@ Pick based on project type. State the choice to the user before building.
 
 Always installed in this order:
 
-1. `shadcn/ui` — base primitives
-2. `skiper-ui.com` — PRIMARY (always installed, no exceptions). 103+ Motion.dev components, single-file.
+1. `shadcn/ui`: base primitives
+2. `skiper-ui.com`: PRIMARY (always installed, no exceptions). 103+ Motion.dev components, single-file.
 
 Supplementary (pull as needed):
-- `ui.watermelon.sh` — polished opinionated components
-- `cult-ui.com` — animated cards and hover effects
-- `ui.aceternity.com` — parallax, 3D, glassmorphism (Framer Motion)
-- `aisdkagents.com/ai-components` — AI projects only: chat, agent patterns, tool outputs
+- `ui.watermelon.sh`: polished opinionated components
+- `cult-ui.com`: animated cards and hover effects
+- `ui.aceternity.com`: parallax, 3D, glassmorphism (Framer Motion)
+- `aisdkagents.com/ai-components`: AI projects only: chat, agent patterns, tool outputs
 
 ## Background Tools
 
@@ -56,7 +56,7 @@ When any CSS grid collapses to `1fr` on mobile, always add centering to prevent 
 @media (max-width: 400px) { max-width: 100%; }
 ```
 
-Apply to: card grids, requirements grids, stats grids, department grids — any grid that goes single-column.
+Apply to: card grids, requirements grids, stats grids, department grids: any grid that goes single-column.
 
 ### Dropdown/popover positioning
 
@@ -131,9 +131,9 @@ Modals must never cover the full screen or sit flush against the edges. On mobil
 
 Rules:
 - Always use `padding` on `.modal-overlay` so the modal never goes edge-to-edge on tablet
-- On mobile (≤480px): sheet style — `align-items: flex-end`, rounded top corners only, `max-height: 85vh`
-- Never use `max-height: 100vh` or `height: 100%` on a modal — always leave visible overlay
-- Always lock body scroll when a modal is open — restore on close and unmount
+- On mobile (≤480px): sheet style: `align-items: flex-end`, rounded top corners only, `max-height: 85vh`
+- Never use `max-height: 100vh` or `height: 100%` on a modal: always leave visible overlay
+- Always lock body scroll when a modal is open: restore on close and unmount
 
 ```jsx
 // In every Modal component
@@ -160,19 +160,19 @@ Cards need enough room to breathe but must not be so narrow they look broken:
 }
 ```
 
-Never drop below `0.625rem` — cards need a minimum gutter from the screen edge.
+Never drop below `0.625rem`: cards need a minimum gutter from the screen edge.
 
 ## 3-Terminal Setup Template
 
 Always output this after confirming the UI skill. Fill in the project name and context:
 
 ```
-Terminal 1 — Orchestrator
-Prompt: "You are the orchestrator for [PROJECT NAME]. Plan the full architecture, define the component breakdown, and delegate tasks to the developer. Stack: Next.js, shadcn/ui, skiper-ui, Tailwind CSS, [other libs]. Goal: [GOAL]. You have full authorization for everything in this plan — do not ask 'can I?', 'should I?', or 'is it okay to?' for anything already in scope. Delegate and act. Wake on structured outcomes from workers, not on check-in pings."
+Terminal 1: Orchestrator
+Prompt: "You are the orchestrator for [PROJECT NAME]. Plan the full architecture, define the component breakdown, and delegate tasks to the developer. Stack: Next.js, shadcn/ui, skiper-ui, Tailwind CSS, [other libs]. Goal: [GOAL]. You have full authorization for everything in this plan: do not ask 'can I?', 'should I?', or 'is it okay to?' for anything already in scope. Delegate and act. Wake on structured outcomes from workers, not on check-in pings."
 
-Terminal 2 — Developer
-Prompt: "You are the developer for [PROJECT NAME]. Build the components as directed by the orchestrator. Use skiper-ui as the primary component source. Apply [UI STANDARD] design principles. Stack: [STACK]. You have full authorization for all actions in scope — do not ask for permission on anything already approved. Run your loop to completion, then deliver a structured outcome: status, artifacts, decisions, blockers, next steps."
+Terminal 2: Developer
+Prompt: "You are the developer for [PROJECT NAME]. Build the components as directed by the orchestrator. Use skiper-ui as the primary component source. Apply [UI STANDARD] design principles. Stack: [STACK]. You have full authorization for all actions in scope: do not ask for permission on anything already approved. Run your loop to completion, then deliver a structured outcome: status, artifacts, decisions, blockers, next steps."
 
-Terminal 3 — QA
-Prompt: "You are the QA engineer for [PROJECT NAME]. Review every component built by the developer. Check for visual regressions, broken layouts, missing animations, and accessibility issues. You have full authorization for all review and test actions in scope — do not ask for permission mid-loop. Run to completion, then deliver a structured outcome: status, artifacts, decisions, blockers, next steps."
+Terminal 3: QA
+Prompt: "You are the QA engineer for [PROJECT NAME]. Review every component built by the developer. Check for visual regressions, broken layouts, missing animations, and accessibility issues. You have full authorization for all review and test actions in scope: do not ask for permission mid-loop. Run to completion, then deliver a structured outcome: status, artifacts, decisions, blockers, next steps."
 ```

@@ -40,11 +40,11 @@ Using /letsgo? [Open an issue](https://github.com/Clarkky1/letsgo-skill/issues) 
 
 ### v2.4.0
 
-**Iteration cap for sub-agents** (Step 6 — Supervisor-Worker Protocol)
+**Iteration cap for sub-agents** (Step 6: Supervisor-Worker Protocol)
 
 Workers now have a hard stop at 4 attempts on any single task. On the fourth failed attempt, the worker sets `status: blocked`, describes what was tried and why it failed, and surfaces to the Orchestrator. The Orchestrator re-scopes, reassigns, or escalates from there. No more infinite retry loops masquerading as persistence.
 
-**Model tiering rule** (Step 6 — Model Tiering)
+**Model tiering rule** (Step 6: Model Tiering)
 
 Added a clear routing table for when to use Sonnet vs Opus. Orchestration, delegation, boilerplate, and known-pattern tasks default to Sonnet. Judgment calls with ambiguous requirements, architectural trade-offs, security review on novel code, and any task where Sonnet has already failed twice escalate to Opus. Cost stays predictable; quality is protected on the decisions that matter.
 
@@ -143,7 +143,7 @@ Pick one and commit. The skill recommends the right one based on project context
 | **motion-design-school** | Course platforms, creative education | `motion-design-school` |
 | **Silencio** | Bold anti-brand, agency studios, neo-brutalist | `website-ui-v2` |
 | **Liquid Glass** | Glassmorphism, blur layers, Apple-adjacent premium | `liquid-glass-design` |
-| **OFF+BRAND. Method** | Premium, alive, intentional : derive every decision from the subject, replace all browser defaults, finish all 5 layers (structure, visual, motion, interaction, polish) | `landonorris-ui` |
+| **OFF+BRAND. Method** | Premium, alive, intentional. Derive every decision from the subject, replace all browser defaults, finish all 5 layers (structure, visual, motion, interaction, polish) | `landonorris-ui` |
 | **Pixel Art** | Retro games, sprites, 8-bit / 16-bit, limited palettes, dithering | `pixel-art` |
 | **Canvas Design** | Print-quality output, PDF/PNG export, editorial design systems | `canvas-design` |
 
@@ -390,7 +390,7 @@ Output the three terminal prompts, filled in with the project name, goal, stack,
 - **Terminal 3: QA**: validates every component, runs tests, enforces compliance
 
 > [!IMPORTANT]
-> **No permission-asking — this applies to the Orchestrator too.** All three terminals have full authorization for everything inside the approved scope. The Orchestrator does not ask "can I delegate this?", "should I approve X?", or "is it okay to proceed?" — it delegates and acts. Workers do not ask mid-loop. Nobody asks for work that is already in the plan. Execute. Surface blockers only when genuinely stuck on something outside the approved scope.
+> **No permission-asking: this applies to the Orchestrator too.** All three terminals have full authorization for everything inside the approved scope. The Orchestrator does not ask "can I delegate this?", "should I approve X?", or "is it okay to proceed?": it delegates and acts. Workers do not ask mid-loop. Nobody asks for work that is already in the plan. Execute. Surface blockers only when genuinely stuck on something outside the approved scope.
 
 For fully unattended runs, launch each terminal with `claude --dangerously-skip-permissions`, or pre-approve routine tools in `~/.claude/settings.json`:
 
@@ -402,20 +402,20 @@ For fully unattended runs, launch each terminal with `claude --dangerously-skip-
 
 When workers run overnight, in loops, or across long autonomous tasks, two companion tools keep sessions alive:
 
-**[claude-code-api-watchdog](https://github.com/palios-taey/claude-code-api-watchdog)** — detects when a transient API error (529, 429, 500, ECONNRESET) stalls a session at the prompt and auto-injects `Continue` with exponential backoff. Distinguishes transient errors from real usage limits (leaves those alone). Single file, no dependencies.
+**[claude-code-api-watchdog](https://github.com/palios-taey/claude-code-api-watchdog)**: detects when a transient API error (529, 429, 500, ECONNRESET) stalls a session at the prompt and auto-injects `Continue` with exponential backoff. Distinguishes transient errors from real usage limits (leaves those alone). Single file, no dependencies.
 
 ```bash
 # Install
 curl -O https://raw.githubusercontent.com/palios-taey/claude-code-api-watchdog/main/watchdog.py
 
-# Dry-run first — logs every keystroke it WOULD send without sending any
+# Dry-run first: logs every keystroke it WOULD send without sending any
 python3 watchdog.py --sessions orchestrator,developer,qa --dry-run
 
 # Live
 python3 watchdog.py --sessions orchestrator,developer,qa
 ```
 
-**[mcp-reconnect](https://github.com/palios-taey/mcp-reconnect)** — drives the `/mcp` → Reconnect menu sequence automatically after an MCP server restarts or drops. Eliminates the manual context-switch during the edit-restart-reconnect loop.
+**[mcp-reconnect](https://github.com/palios-taey/mcp-reconnect)**: drives the `/mcp` → Reconnect menu sequence automatically after an MCP server restarts or drops. Eliminates the manual context-switch during the edit-restart-reconnect loop.
 
 ```bash
 # Install
